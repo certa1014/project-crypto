@@ -3,6 +3,20 @@
 ## 1. Use case diagram
 ![](img/UseCaseDiagram.png)
 
+다음은 게임 시스템의 Use Case Diagram이다.<br>
+NPC는 플레이어에게 의뢰를 제공하고 결과를 전달받는 역할의 게임 내부의 오브젝트에 가깝다고 판단하여 actor로 설정하지 않았다.<br>
+
+플레이어는 게임을 시작하고 저장 및 불러오기를 수행할 수 있으며, NPC와의 상호작용을 통해 의뢰를 수락하고 암호문을 해독할 수 있다. 또한 플레이어는 해독 결과를 제출하거나 NPC를 신고할 수 있으며, 정산 결과를 바탕으로 시설 업그레이드를 진행할 수 있다.
+
+게임의 주요 흐름은 NPC와의 상호작용을 통해 의뢰를 수락한 뒤, 가이드북을 참고하여 암호문을 해독하고 결과를 제출하는 방식으로 구성된다. 하루가 종료되면 일일 정산이 진행되며, 게임 진행 상황은 자동 저장된다.
+
+Use Case Diagram에서는 Player를 주요 Actor로 사용하였으며, 일부 기능 간의 관계를 표현하기 위해 include 및 extend 관계를 사용하였다.
+
+Daily Settlement는 하루 종료 후 자동 저장 기능을 수행하기 위해 Save를 include한다.
+Modulation은 결과 제출 과정에서 선택적으로 수행되는 기능이므로 Give Result를 extend한다.<br>
+Report는 결과 제출 대신 수행 가능한 기능이므로 Give Result를 extend한다.
+
+
 ## 2. Use case description
 ### Use case #1: Start Game (새 게임)
 **1. GENERAL CHARACTERISTICS**
