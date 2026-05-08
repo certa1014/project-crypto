@@ -1,3 +1,9 @@
+# 2. Use case analysis
+
+## 1. Use case diagram
+![](img/UseCaseDiagram.png)
+
+## 2. Use case description
 ### Use case #1: Start Game (새 게임)
 **1. GENERAL CHARACTERISTICS**
 
@@ -14,7 +20,7 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 플레이어가 게임을 처음부터 시작하려고 할 때 시작된다. |
 | **1** | 플레이어가 '새 게임' 버튼을 클릭한다. |
@@ -38,7 +44,7 @@
 | **Summary** | 현재까지 진행된 플레이어의 게임 상황(자금, 평판, 해독 기기 등)을 저장하는 기능 |
 | **Scope** | Project Crypto |
 | **Level** | User Level |
-| **Primary Actor** | Player, System |
+| **Primary Actor** | Player |
 | **Preconditions** | 플레이어가 인게임 스테이지에 있거나, 일일 정산이 끝난 직후여야 한다. |
 | **Trigger** | 하루가 종료되거나, 메뉴에서 수동 저장 버튼을 누를 때 |
 | **Success Post Condition** | 현재 진행 데이터가 디스크에 성공적으로 보존된다. |
@@ -46,12 +52,15 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 하루 일과가 끝나거나 플레이어가 게임을 저장하고 싶을 때 시작된다. |
 | **1** | 일일 정산이 완료된 직후 시스템이 자동으로 저장을 요청하거나, 플레이어가 일시정지 메뉴에서 '저장'을 누른다. |
 | **2** | 시스템은 현재 플레이어의 재화, 보유 기기, 날짜 정보를 파일로 저장한다. |
 | **3** | 저장 완료 문구가 화면에 출력된다. |
+
+| Step | Branching Action |
+| :--- | :--- |
 | **2a** | (Extension) 이미 존재하는 데이터 파일 위에 덮어씌우려 한다면 저장전 경고문구를 띄운다. |
 
 **3. RELATED INFORMATION**
@@ -78,12 +87,15 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 플레이어가 이전 진행 상황을 이어서 플레이하고 싶을 때 시작된다. |
 | **1** | 플레이어가 불러오기 메뉴를 열고 특정 세이브 슬롯을 선택한다. |
 | **2** | 시스템은 해당 파일의 데이터를 통해 게임 상태를 복원한다. |
 | **3** | 복원된 상태에 맞는 스테이지 씬으로 이동한다. |
+
+| Step | Branching Action |
+| :--- | :--- |
 | **2a** | (Extension) 세이브 파일이 손상되었거나 호환되지 않는 경우 <br> ...2a1. "파일을 불러올 수 없습니다"라는 에러 문구를 띄우고 타이틀 화면으로 되돌아 간다. |
 
 **3. RELATED INFORMATION**
@@ -110,12 +122,15 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 플레이어가 게임 플레이를 마치고 끄려고 할 때 시작된다. |
 | **1** | 메뉴에서 '게임 종료' 버튼을 클릭한다. |
 | **2** | 시스템은 종료 전 저장하지 않은 진행 상황이 있는지 확인한다. |
 | **3** | 시스템이 클라이언트 프로세스를 종료한다. |
+
+| Step | Branching Action |
+| :--- | :--- |
 | **2a** | (Extension) 저장되지 않은 진행 상황이 있는 경우 <br> ...2a1. "저장되지 않은 진행 상황이 사라집니다. 종료하시겠습니까?" 팝업을 띄운다. |
 
 **3. RELATED INFORMATION**
@@ -137,16 +152,19 @@
 | **Primary Actor** | Player, NPC |
 | **Preconditions** | 하루 일과(스테이지)가 진행 중이며, 대기 중인 NPC가 상점에 입장해야 한다. |
 | **Trigger** | NPC가 작업대 앞까지 다가와 상호작용을 시작할 때 |
-| **Success Post Condition** | 작업대 위에 암호문 서류와 키(Key) 아이템이 배치된다. |
-| **Failed Post Condition** | 서류가 제공되지 않거나 NPC가 이탈한다. |
+| **Success Post Condition** | 작업대 위에 암호문과 키(Key) 아이템이 배치된다. |
+| **Failed Post Condition** | 암호문과 키 아이템이 배치되지 않고 NPC가 퇴장한다. |
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 스테이지가 시작되고 NPC가 플레이어 앞에 도착했을 때 시작된다. |
 | **1** | NPC가 의뢰 내용과 함께 암호문과 관련된 키(단어, 특정 소지품 등)를 작업대에 올려놓는다. |
 | **2** | 시스템은 해당 서류와 아이템을 플레이어가 클릭(상호작용)할 수 있는 상태로 활성화한다. |
+
+| Step | Branching Action |
+| :--- | :--- |
 | **1a** | (Extension) NPC가 암호 해독 의뢰가 아닌 다른 목적(스토리 이벤트)으로 방문한 경우 <br> ...1a1. 암호문 대신 대화문이나 특정 퀘스트 아이템만 전달한다. |
 | **2a** | (Extension) 플레이어가 의뢰를 거절한다면 NPC는 퇴장한다. |
 
@@ -174,9 +192,9 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
-| **S** | 암호문의 형태나 키 값을 보고 어떤 해독 기기를 사용할지 모를 때 시작된다. |
+| **S** | NPC에게 암호문과 키를 받아 의뢰를 수락했을때 시작된다. |
 | **1** | 플레이어가 작업대의 가이드북을 클릭한다. |
 | **2** | 화면에 가이드북 UI가 팝업된다. |
 | **3** | 마우스로 페이지를 넘기며 해독 규칙을 확인한다. |
@@ -206,7 +224,7 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 가이드북을 통해 해독 방식을 파악하고 복호화를 시작하려 할 때 시작된다. |
 | **1** | 플레이어가 암호 방식에 맞는 오브젝트를 클릭하여 팝업 UI를 연다. |
@@ -222,7 +240,7 @@
 
 ---
 
-### Use case #8: Result Give (평문 전달)
+### Use case #8: Give Result (평문 전달)
 **1. GENERAL CHARACTERISTICS**
 
 | 항목 | 내용 |
@@ -230,7 +248,7 @@
 | **Summary** | 해독이 완료된 원본 평문 서류를 대기 중인 NPC에게 제출하여 거래를 마치는 기능 |
 | **Scope** | Project Crypto |
 | **Level** | User Level |
-| **Primary Actor** | Player |
+| **Primary Actor** | Player, NPC |
 | **Preconditions** | 암호문이 평문 서류로 복호화되어 작업대 위에 존재해야 한다. |
 | **Trigger** | 플레이어가 완성된 평문을 마우스로 드래그하여 NPC에게 건네주거나 확인 버튼을 누를 때 |
 | **Success Post Condition** | 해당 의뢰가 종료되고, 다음 NPC가 오거나 하루가 종료된다. |
@@ -238,12 +256,15 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 플레이어가 해독을 정상적으로 마치고 결과를 넘겨주려 할 때 시작된다. |
 | **1** | 플레이어가 완성된 평문 서류를 NPC 오브젝트 쪽에 드래그 앤 드롭 혹은 버튼을 클릭한다. |
 | **2** | NPC가 결과물을 받고 상점을 떠난다. |
 | **3** | 시스템은 해당 의뢰를 성공(정상 제출) 상태로 기록한다. |
+
+| Step | Branching Action |
+| :--- | :--- |
 | **2a** | (Extension) 완전히 해독되지 않은 미완성/오답 서류를 넘긴 경우 <br> ...2a1. NPC가 떠나고, 페널티가 적용된다. |
 
 **3. RELATED INFORMATION**
@@ -254,7 +275,7 @@
 
 ---
 
-### Use case #9: Result Change (평문 변조)
+### Use case #9: Modulation (평문 변조)
 **1. GENERAL CHARACTERISTICS**
 
 | 항목 | 내용 |
@@ -270,12 +291,15 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 플레이어가 평문의 내용을 변조하려 할 때 시작된다. |
 | **1** | 플레이어가 UI에 활성화된 변조 버튼을 클릭한다. |
 | **2** | 평문이 임의의 내용으로 교체된다. |
 | **3** | 변조된 평문을 NPC에게 전달한다. |
+
+| Step | Branching Action |
+| :--- | :--- |
 | **3a** | (Extension) 변조 발각 이벤트 발생 시 일일정산에 변조로 인한 패널티를 부여한다. |
 
 **3. RELATED INFORMATION**
@@ -302,7 +326,7 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 해독된 내용이 위험하다고 판단하여 경찰에 신고하려 할때 시작한다. |
 | **1** | 플레이어가 책상 위의 오브젝트를 클릭한다. |
@@ -317,15 +341,15 @@
 
 ---
 
-### Use case #11: 일일 정산 (Daily Settlement)
+### Use case #11: Daily Settlement (일일 정산)
 **1. GENERAL CHARACTERISTICS**
 
 | 항목 | 내용 |
 | :--- | :--- |
 | **Summary** | 하루 일과 종료 시 수입/지출/벌금/평판 변화를 일괄 계산하여 장부 형태로 보여주는 기능 |
 | **Scope** | Project Crypto |
-| **Level** | System |
-| **Primary Actor** | System |
+| **Level** | User Level |
+| **Primary Actor** | Player |
 | **Preconditions** | 스테이지(하루)에 할당된 시간이 다 되었을 때 |
 | **Trigger** | 자동으로 발생 |
 | **Success Post Condition** | 정산 결과에 따라 플레이어의 데이터(자산/평판)가 갱신되고 다음 스테이지(다음날)가 시작된다. |
@@ -333,13 +357,16 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 스테이지 시간(하루)가 끝나고 상점의 셔터가 닫힐 때 시작된다. |
 | **1** | 시스템이 해독 건수, 오답 페널티, 밀고 보상, 세금 및 대출 이자 등을 종합하여 수입을 계산한다. |
 | **2** | 최종 잔액과 평판 증감 수치를 장부 UI에 출력한다. |
 | **3** | 플레이어가 정산 내역을 확인하고 '다음' 버튼을 누른다. |
 | **4** | 다음 스테이지(다음날)가 시작된다. |
+
+| Step | Branching Action |
+| :--- | :--- |
 | **3a** | (Extension) 계산 결과 플레이어의 자금이 파산 조건에 도달한 경우 <br> ...3a1. 정산 화면 대신 배드 엔딩(게임 오버) 연출을 재생한다. |
 
 **3. RELATED INFORMATION**
@@ -350,7 +377,7 @@
 
 ---
 
-### Use case #12: 시설 업그레이드 (Facility Upgrade)
+### Use case #12: Facility Upgrade (시설 업그레이드)
 **1. GENERAL CHARACTERISTICS**
 
 | 항목 | 내용 |
@@ -366,12 +393,15 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 일일 정산을 마치고 다음 스테이지에서 새로운 기계를 도입하여 퍼즐 범위를 넓히고자 할 때 시작된다. |
 | **1** | 플레이어가 상점 UI에서 구매하고자하는 오브젝트를 선택한다. |
 | **2** | '구매' 버튼을 누른다. |
 | **3** | 시스템이 플레이어의 잔액을 깎고 해당 기기를 보유 상태로 변경한다. |
+
+| Step | Branching Action |
+| :--- | :--- |
 | **2a** | (Extension) 소지한 자금이 구매 비용보다 적은 경우 <br> ...2a1. "자금이 부족합니다"라는 경고문을 출력한다. |
 
 **3. RELATED INFORMATION**
@@ -382,7 +412,7 @@
 
 ---
 
-### Use case #13: NPC 상호작용 (NPC Interaction)
+### Use case #13: NPC Interaction (NPC 상호작용)
 **1. GENERAL CHARACTERISTICS**
 
 | 항목 | 내용 |
@@ -390,7 +420,7 @@
 | **Summary** | 상점에 들어온 NPC와 대화하고, 의뢰 수락/거절 혹은 잡담 등의 선택지를 고르는 기능 |
 | **Scope** | Project Crypto |
 | **Level** | User Level |
-| **Primary Actor** | Player |
+| **Primary Actor** | Player, NPC |
 | **Preconditions** | NPC가 작업대 앞에 등장하여 대기 중이어야 한다. |
 | **Trigger** | NPC가 대화창(말풍선)을 띄우고 플레이어가 텍스트 선택지를 클릭할 때 |
 | **Success Post Condition** | 선택지에 따라 의뢰 로직이 실행되거나, NPC가 상점을 이탈한다. |
@@ -398,13 +428,16 @@
 
 **2. SCENARIOS**
 
-| Step | Action / Branching Action |
+| Step | Action |
 | :--- | :--- |
 | **S** | 방문한 NPC의 의도를 파악하고 대화를 이어나가야 할 때 시작된다. |
 | **1** | NPC가 나타나 방문 목적(의뢰, 잡담, 협박 등)을 이야기한다. |
 | **2** | 플레이어가 화면 하단에 생성된 대화 선택지(예: '서류를 보여달라', '당장 나가라')를 클릭한다. |
 | **3** | '서류를 보여달라' 선택 시 Use case #5(의뢰 접수)로 연결된다. |
-| **2a** | (Extension) 암호 해독 목적이 아닌 단순 방문객에게 '나가라'를 선택한 경우 <br> ...2a1. NPC가 투덜대며 상점을 빠져나가고, 불필요한 퍼즐 시간을 아끼게 된다. |
+
+| Step | Branching Action |
+| :--- | :--- |
+| **2a** | (Extension) 암호 해독 목적이 아닌 단순 방문객에게 '나가라'를 선택한 경우 NPC가 상점에서 퇴장한다. |
 
 **3. RELATED INFORMATION**
 
